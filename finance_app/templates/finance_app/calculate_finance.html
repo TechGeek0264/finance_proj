@@ -1,0 +1,59 @@
+<!-- finance_app/templates/finance_app/calculate_finance.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Finance Calculator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h1 class="card-title">Finance Calculator</h1>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.rate.label_tag }}
+                                {{ form.rate }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.home_value.label_tag }}
+                                {{ form.home_value }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.age.label_tag }}
+                                {{ form.age }}
+                            </div>
+                            <button type="submit" class="btn btn-primary">Calculate</button>
+                        </form>
+                    </div>
+                </div>
+                {% if result %}
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h2 class="card-title">Results</h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Principal Limit: ${{ result.principal_limit }}</li>
+                            <li class="list-group-item">Home Value: ${{ result.home_value }}</li>
+                            <li class="list-group-item">Age: {{ result.age }}</li>
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
